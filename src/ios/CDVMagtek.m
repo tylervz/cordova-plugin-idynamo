@@ -128,22 +128,4 @@ static NSString *dataCallbackId = nil;
     }
 }
 
-- (NSString *)getHexString:(NSData *)data {
-    
-    
-    NSMutableString *mutableStringTemp = [NSMutableString stringWithString:@""];
-    
-    for (int i = 0; i < data.length; i++)
-    {
-        unsigned char tempByte;
-        
-        [data getBytes:&tempByte
-                 range:NSMakeRange(i, 1)];
-        
-        [mutableStringTemp appendFormat:@"%02X", tempByte];
-    }
-    
-    return mutableStringTemp;
-}
-
 @end

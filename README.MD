@@ -36,7 +36,7 @@ window.addEventListener('magtekEvent', function (e) {
   }
 });
 
-magtek.init();
+magtek.init(function(err,res){console.log(err);console.log(res);});
 
 var q = function(res){console.log(res);}
 magtek.openDevice(q,q);

@@ -32,10 +32,6 @@
     <header-file src="src/ios/CDVMagtek.h" />
     <source-file src="src/ios/CDVMagtek.m" />
     <header-file src="src/ios/MagtekSDK/MTSCRA.h" />
-    <header-file src="src/ios/MagtekSDK/HexUtil.h" />
-    <source-file src="src/ios/MagtekSDK/HexUtil.m" />
-    <header-file src="src/ios/MagtekSDK/NSObject+TLVParser.h" />
-    <source-file src="src/ios/MagtekSDK/NSObject+TLVParser.m" />
     <framework src="AVFoundation.framework" />
     <framework src="ExternalAccessory.framework"/>
     <framework src="libstdc++.dylib"/>
