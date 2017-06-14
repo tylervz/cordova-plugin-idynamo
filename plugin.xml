@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin id="cordova-plugin-idynamo" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:rim="http://www.blackberry.com/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>Magtek</name>
+  <author>Jose Angarita</author>
+  <description>Cordova Magtek iDynamo Plugin</description>
+  <license>MIT</license>
+  <keywords>credit card,cc,magtek, idynamo, iDynamo</keywords>
+  <repo></repo>
+
+  <js-module src="www/magtek.js" name="CDVMagtek">
+    <clobbers target="magtek" />
+    <clobbers target="cordova.magtek" />
+  </js-module>
+
+
+  <!-- ios -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="CDVMagtek">
+        <param name="ios-package" value="CDVMagtek"/>
+      </feature>
+    </config-file>
+
+    <config-file target="*-Info.plist" parent="UISupportedExternalAccessoryProtocols">
+      <array>
+        <string>com.magtek.idynamo</string>
+      </array>
+    </config-file>
+    
+
+    <header-file src="src/ios/CDVMagtek.h" />
+    <source-file src="src/ios/CDVMagtek.m" />
+    <header-file src="src/ios/MagtekSDK/MTSCRA.h" />
+    <header-file src="src/ios/MagtekSDK/HexUtil.h" />
+    <source-file src="src/ios/MagtekSDK/HexUtil.m" />
+    <header-file src="src/ios/MagtekSDK/NSObject+TLVParser.h" />
+    <source-file src="src/ios/MagtekSDK/NSObject+TLVParser.m" />
+    <framework src="AVFoundation.framework" />
+    <framework src="ExternalAccessory.framework"/>
+    <framework src="libstdc++.dylib"/>
+    <source-file src="src/ios/MagtekSDK/libMTSCRA.a" framework="true" />
+  </platform>
+</plugin>
