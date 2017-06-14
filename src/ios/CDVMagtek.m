@@ -85,7 +85,7 @@ static NSString *dataCallbackId = nil;
         [data setObject:[NSString stringWithFormat:@"%@", cardDataObj.encryptedTrack3] forKey:@"Track3.Encrypted"];
         [data setObject:[NSString stringWithFormat:@"%@", cardDataObj.cardPAN] forKey:@"Card.PAN"];
         [data setObject:[NSString stringWithFormat:@"%@", cardDataObj.encryptedMagneprint] forKey:@"MagnePrint.Encrypted"];
-        [data setObject:[NSString stringWithFormat:@"%ld", cardDataObj.magnePrintLength] forKey:@"MagnePrint.Length"];
+        [data setObject:[NSString stringWithFormat:@"%d", cardDataObj.magnePrintLength] forKey:@"MagnePrint.Length"];
         [data setObject:[NSString stringWithFormat:@"%@", cardDataObj.magneprintStatus] forKey:@"MagnePrint.Status"];
         [data setObject:[NSString stringWithFormat:@"%@", cardDataObj.encrypedSessionID] forKey:@"SessionID"];
         [data setObject:[NSString stringWithFormat:@"%@", cardDataObj.cardIIN] forKey:@"Card.IIN"];

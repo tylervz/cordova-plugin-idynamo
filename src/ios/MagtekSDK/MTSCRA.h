@@ -31,7 +31,7 @@
 #import "AVFoundation/AVFoundation.h"
 #endif
 
-#warning Notification method will be deprecated on next release, please use delegate
+//#warning Notification method will be deprecated on next release, please use delegate
 //#define _DBGPRNT
 
 
