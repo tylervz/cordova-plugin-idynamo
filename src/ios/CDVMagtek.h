@@ -3,8 +3,6 @@
 #import <Cordova/CDV.h>
 
 #import "MTSCRA.h"
-#import "HexUtil.h"
-#import "NSObject+TLVParser.h"
 
 @interface CDVMagtek : CDVPlugin <MTSCRAEventDelegate>
 
