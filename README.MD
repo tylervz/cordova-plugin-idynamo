@@ -48,7 +48,7 @@ magtek.closeDevice(q,q); //Closing the device saves battery live
 
 
 Function List
-- [init()](#init)
+- [init(callback)](#init)
 - [openDevice(success, error)](#opendevice)
 - [closeDevice(success, error)](#closedevice)
 
@@ -63,7 +63,9 @@ Function List
 # Functions
 
 ## init
-The `init()` function initializes the magtek instance.
+The `init(callback)` function initializes the magtek instance.
+
+callback eg: `function(err,res){console.log(err);console.log(res);}`
 
 ## openDevice
 The `openDevice(success, error)` method starts the magtek device.
