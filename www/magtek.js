@@ -8,7 +8,6 @@ module.exports = {
                 callback(null, result);
                 connected = true;
             } else {
-                self.alert(result)
                 cordova.fireWindowEvent("magtekEvent", result);
             }
         },
