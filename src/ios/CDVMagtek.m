@@ -8,8 +8,7 @@ static NSString *dataCallbackId = nil;
 #pragma mark Device Connection
 #pragma mark -
 
-- (void)pluginInitialize
-{
+- (void)pluginInitialize {
     self.lib = [MTSCRA new];
     self.lib.delegate = self;
     [self.lib setDeviceType:MAGTEKIDYNAMO];
@@ -17,23 +16,32 @@ static NSString *dataCallbackId = nil;
 }
 
 - (void)init: (CDVInvokedUrlCommand *) command {
-    CDVPluginResult* result = nil;
     dataCallbackId = command.callbackId;
+    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];;
     [result setKeepCallbackAsBool:YES];
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:dataCallbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:dataCallbackId];
 
 }
 
 - (void)openDevice:(CDVInvokedUrlCommand*)command {
-   if(!self.lib.isDeviceOpened ) {
+    //CDVPluginResult* result = nil;
+    // [result setKeepCallbackAsBool:YES];
+    if(!self.lib.isDeviceOpened ) {
         [self.lib openDevice];
+        // dataCallbackId = command.callbackId;
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+    } else {
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_INVALID_ACTION] callbackId:command.callbackId];
     }
-
+    
 }
 
 - (void)closeDevice:(CDVInvokedUrlCommand*)command{
     if(self.lib.isDeviceOpened ) {
         [self.lib closeDevice];
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+    } else {
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_INVALID_ACTION] callbackId:command.callbackId];
     }
 }
 

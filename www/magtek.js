@@ -8,6 +8,7 @@ module.exports = {
                 callback(null, result);
                 connected = true;
             } else {
+                self.alert(result)
                 cordova.fireWindowEvent("magtekEvent", result);
             }
         },
@@ -15,6 +16,14 @@ module.exports = {
             callback(error)
     	}, 'CDVMagtek', 'init', []);
     },
+    // openDevice: function () {
+    //     exec(function (result) {
+    //         // cordova.fireWindowEvent("magtekEvent", result);
+    //         self.alert(result);
+    //     },function (error) {
+    //         self.alert("Things went downhill, sorry... :\r\r" + error);
+    //     }, "CDVMagtek", "openDevice", []);
+    // },
     openDevice: function (success, error) {
         exec(success, error, "CDVMagtek", "openDevice", []);
     },

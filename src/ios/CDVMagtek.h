@@ -7,6 +7,7 @@
 @interface CDVMagtek : CDVPlugin <MTSCRAEventDelegate>
 
 @property (nonatomic, strong) MTSCRA* lib;
+// @property (nonatomic, strong) NSString* dataCallbackId;
 
 - (void)init: (CDVInvokedUrlCommand *) command;
 - (void)openDevice: (CDVInvokedUrlCommand *) command;
