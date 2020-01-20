@@ -4,20 +4,7 @@
 //
 //  Created by Imran Jahanzeb on 1/31/12.
 //  Copyright (c) 2012 MagTek. All rights reserved.
-//ƒ
-//
-//  MTSCRA.h
-//  MTSCRA
-//
-//  Created by Imran Jahanzeb on 1/23/12.
-//  Copyright (c) 2012 MagTek. All rights reserved.
-//
 
-//#import <Foundation/Foundation.h>
-
-//@interface MTSCRA : NSObject
-//  Copyright 2011 MagTek. All rights reserved.
-//
 
 #import <AudioUnit/AudioUnit.h>
 #import <Foundation/Foundation.h>
@@ -31,7 +18,7 @@
 #import "AVFoundation/AVFoundation.h"
 #endif
 
-//#warning Notification method will be deprecated on next release, please use delegate
+#warning Notification method will be deprecated on next release, please use delegate
 //#define _DBGPRNT
 
 
@@ -124,12 +111,14 @@ enum
     MAGTEKDYNAMAX,
     MAGTEKEDYNAMO,
     MAGTEKUSBMSR, //OSX Only
+    MAGTEKKDYNAMO,
+    MAGTEKTDYNAMO,
     MAGTEKNONE
     
 };
 typedef NSUInteger MTSCRADeviceType;
 
-//#if TARGET_OS_OSX
+
 enum
 {
     BLE,
@@ -137,8 +126,9 @@ enum
     USB,
     NONE
 };
-typedef NSUInteger MTSCRAConnectionType;
-//#endif
+typedef NSUInteger ConnectionType;
+ 
+
 
 enum
 {
@@ -155,7 +145,7 @@ typedef int MTSCRABLEState;
 @property(nonatomic, strong) NSString *Address;
 @property(nonatomic, strong) NSString *Name;
 @property(nonatomic, strong) NSString *ProductID;
-@property MTSCRAConnectionType connectionType;
+@property ConnectionType connectionType;
 @end
 
 @interface MTCardData : NSObject
@@ -245,7 +235,7 @@ typedef int MTSCRABLEState;
 
 
 
-- (void) onDeviceList:(id)instance connectionType:(MTSCRAConnectionType)connectionType deviceList:(NSArray*)deviceList;
+- (void) onDeviceList:(id)instance connectionType:(ConnectionType)connectionType deviceList:(NSArray*)deviceList;
 @end
 
 
@@ -534,13 +524,17 @@ void audioReaderDelegate(void*self, int status);
 //send extended command to EMV Devices;
 - (int) sendExtendedCommand:(NSString*)commandIn;
 
+//Return Card Data TLV Pay load
 - (NSString*) getTLVPayload;
 
-//#if TARGET_OS_OSX
--(void) setConnectionType: (MTSCRAConnectionType)connectionType;
+//Set device address for BLE devices.
+- (void)setAddress:(NSString *)address;
 
--(MTSCRAConnectionType)getConnectionType;
-//#endif
+//FOR USB ONLY
+- (void) setConnectionType: (ConnectionType)connectionType;
+- (ConnectionType)getConnectionType;
+
+
 
 
 //MTSCRA Delegate
@@ -551,9 +545,10 @@ void audioReaderDelegate(void*self, int status);
 
 
 #pragma mark MAC_OSX_FUNCTIONS
-//#if TARGET_OS_OSX
-- (void)requestDeviceList:(MTSCRAConnectionType)type;
-- (void)setAdress:(NSString *)address;
+
+- (void)requestDeviceList:(ConnectionType)type;
+
+// USB Only
 - (int)getProductID;
-//#endif
+
 @end
