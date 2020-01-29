@@ -24,6 +24,27 @@ Note: Plugin requires the following frameworks, although plugin adds them, doubl
 
 Install using `cordova plugin add https://github.com/auctifera-josed/cordova-plugin-idynamo`
 
+## Configuration
+
+This plugins requires the following usage descriptions in the `info.plist`:
+
+* [`NSBluetoothPeripheralUsageDescription`](https://developer.apple.com/documentation/bundleresources/information_property_list/nsbluetoothperipheralusagedescription) describes the reason the app is requesting the ability to connect to Bluetooth peripherals.
+* [`NSBluetoothAlwaysUsageDescription`](https://developer.apple.com/documentation/bundleresources/information_property_list/nsbluetoothalwaysusagedescription) describes the reason the why the app needs access to Bluetooth.
+
+To add these entries into the `info.plist`, you can add `edit-config` tags in your `config.xml` like this:
+
+```
+<edit-config target="NSBluetoothPeripheralUsageDescription" file="*-Info.plist" mode="merge">
+    <string>Needs Bluetooth access to connect to a MagTek card reader</string>
+</edit-config>
+
+<edit-config target="NSBluetoothAlwaysUsageDescription" file="*-Info.plist" mode="merge">
+    <string>Needs Bluetooth access to connect to a MagTek card reader</string>
+</edit-config>
+```
+
+Apple will reject apps that use this plugin but do not have these usage descriptions. 
+
 # Example
 ```javascript
 window.addEventListener('magtekEvent', function (e) {
@@ -41,7 +62,7 @@ magtek.init(function(err,res){console.log(err);console.log(res);});
 var q = function(res){console.log(res);}
 magtek.openDevice(q,q);
 //make a swipe
-magtek.closeDevice(q,q); //Closing the device saves battery live
+magtek.closeDevice(q,q); //Closing the device saves battery life
 ```
 # API Reference
 
