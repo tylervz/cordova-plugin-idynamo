@@ -1,9 +1,9 @@
 var exec = require('cordova/exec');
 
 module.exports = {
-	init: function (callback) {
-    	var connected = false;
-    	exec(function (result) {
+    init: function (callback) {
+        var connected = false;
+        exec(function (result) {
             if (!connected) {
                 callback(null, result);
                 connected = true;
@@ -13,7 +13,7 @@ module.exports = {
         },
         function (error) {
             callback(error)
-    	}, 'CDVMagtek', 'init', []);
+        }, 'CDVMagtek', 'init', []);
     },
     // openDevice: function () {
     //     exec(function (result) {
