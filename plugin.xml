@@ -27,7 +27,6 @@
         <string>com.magtek.idynamo</string>
       </array>
     </config-file>
-    
 
     <header-file src="src/ios/CDVMagtek.h" />
     <source-file src="src/ios/CDVMagtek.m" />
