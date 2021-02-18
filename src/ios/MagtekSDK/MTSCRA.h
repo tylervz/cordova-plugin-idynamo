@@ -19,7 +19,7 @@
 #endif
 
 #warning Notification method will be deprecated on next release, please use delegate
-//#define _DBGPRNT
+#define _DBGPRNT
 
 
 @class IMTSCRAData;
@@ -129,6 +129,17 @@ enum
 typedef NSUInteger ConnectionType;
  
 
+enum
+{
+    Connection,
+    CommandMessageData,
+    CardMessageData,
+    BLERawMessage,
+    DeviceInfo
+    
+};
+typedef int MTSCRADebugDomain;
+
 
 enum
 {
@@ -136,7 +147,9 @@ enum
     OFF,
     RESETTING,
     DISCONNECTED,
-    UNSUPPORTED
+    UNSUPPORTED,
+    UNAUTHORIZED,
+    UNKNOWN
     
 };
 typedef int MTSCRABLEState;
@@ -145,8 +158,24 @@ typedef int MTSCRABLEState;
 @property(nonatomic, strong) NSString *Address;
 @property(nonatomic, strong) NSString *Name;
 @property(nonatomic, strong) NSString *ProductID;
+@property(nonatomic) int RSSI;
 @property ConnectionType connectionType;
 @end
+
+@interface MTConnectionInfo : NSObject
+@property(nonatomic) int disconnectStatus;
+@property(nonatomic, strong) NSString *disconnectReason;
+@property(nonatomic, strong) CBPeripheral *peripheral;
+@end
+
+@interface MTDebugInfo : NSObject
+@property(nonatomic, strong) NSString *name;
+@property(nonatomic) MTSCRADebugDomain debugDomain;
+@property(nonatomic, strong) NSString *value;
+@property ConnectionType connectionType;
+@property (nonatomic,strong) NSDate* timeStamp;
+@end
+
 
 @interface MTCardData : NSObject
 {
@@ -211,7 +240,7 @@ typedef int MTSCRABLEState;
 @property(nonatomic, strong) NSString *track3DecodeStatus;
 @end
 
-
+typedef void (^MTSCRADebugCallback)(MTDebugInfo*);
 @protocol MTSCRAEventDelegate <NSObject>
 @optional
 - (void) onDataReceived: (MTCardData*)cardDataObj instance:(id)instance;
@@ -219,6 +248,7 @@ typedef int MTSCRABLEState;
 - (void) cardSwipeDidGetTransError;
 - (void) onDeviceConnectionDidChange:(MTSCRADeviceType)deviceType connected:(BOOL) connected instance:(id)instance;
 - (void) bleReaderConnected:(CBPeripheral*)peripheral;
+- (void) bleReaderDidDisconnected:(MTConnectionInfo*)connectionInfo;
 - (void) bleReaderDidDiscoverPeripheral;
 - (void) bleReaderStateUpdated:(MTSCRABLEState)state;
 - (void) onDeviceResponse:(NSData*)data;
@@ -232,7 +262,7 @@ typedef int MTSCRABLEState;
 - (void) OnEMVCommandResult:(NSData*)data;
 - (void) onDeviceExtendedResponse:(NSString*)data;
 - (void) deviceNotPaired;
-
+- (void) didGetRSSI:(int)RSSI error:(NSError*)error;
 
 
 - (void) onDeviceList:(id)instance connectionType:(ConnectionType)connectionType deviceList:(NSArray*)deviceList;
@@ -241,6 +271,8 @@ typedef int MTSCRABLEState;
 
 @interface MTSCRA : NSObject <NSStreamDelegate>
 {
+    
+ 
 @private
     
     NSString *cardIIN;
@@ -317,6 +349,7 @@ typedef int MTSCRABLEState;
     
     
     MTSCRADeviceType devType;
+    
 }
 
 void audioReaderDelegate(void*self, int status);
@@ -503,6 +536,7 @@ void audioReaderDelegate(void*self, int status);
 // Retrieves the list of Peripherals that are in range and can be connected to
 - (NSMutableArray *)getDiscoveredPeripherals;
 
+
 // Retrieves the BLE device information
 - (NSDictionary*)getDeviceInformationDictionary;
 
@@ -530,6 +564,9 @@ void audioReaderDelegate(void*self, int status);
 //Set device address for BLE devices.
 - (void)setAddress:(NSString *)address;
 
+//Get bluetooth device signal strength, only apply to Bluetooth LE devices.
+- (int)getBluetoothRSSI;
+
 //FOR USB ONLY
 - (void) setConnectionType: (ConnectionType)connectionType;
 - (ConnectionType)getConnectionType;
@@ -539,7 +576,7 @@ void audioReaderDelegate(void*self, int status);
 
 //MTSCRA Delegate
 @property (nonatomic, weak) id <MTSCRAEventDelegate> delegate;
-
+@property (nonatomic, strong) MTSCRADebugCallback debugInfoCallback;
 
 
 

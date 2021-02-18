@@ -360,3 +360,26 @@ Part Rev = v136 SDK = V126.01, Sample Code = 2.0.1 Date: 09.19.2019
 
 * Add onDeviceError callback for out of range data.
 * Update Swift 5 Sample Code
+**********************************************************************************
+**********************************************************************************
+Part Rev = v137 SDK = V127.01, Sample Code = 2.0.1 Date: 07.14.2020
+
+* Modify packet size for Bluetooth LE for larger packets for tDynamo.
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 138 SDK = 128.01, Sample Code = 2.0.1 Date: 08.27.2020
+
+* Add bleReaderDidDisconnected
+
+* Update onDeviceList with array of MTDeviceInfo which contains RSSI.
+
+* Add debugInfoCallback for debug callback.
+
+* Add getBluetoothRSSI
+**********************************************************************************
+**********************************************************************************
+Part Rev = 139 SDK = 128.01, Sample Code = 2.0.1 Date: 01.22.2021
+
+* Modify Swift Version for com.magtek.idynamo protocol string
+* Fix UI issue for iPhone 12 Pro Max
