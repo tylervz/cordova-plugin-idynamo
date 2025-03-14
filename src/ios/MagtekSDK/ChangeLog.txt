@@ -218,8 +218,10 @@ Part Rev = 121.01, SDK = V114.01, Sample Code = 2.0.0.11 Date:11.24.2014
 Part Rev = 122, SDK = V115.01, Sample Code = 2.0.0.14 Date:02.04.2015
    
    
-   *Added DynaMAX support   
-   *Return error when audio session cannot be initialized   
+   *Added DynaMAX support
+   
+   *Return error when audio session cannot be initialized
+   
    *Added Delegate 
 
 
@@ -262,7 +264,8 @@ Part Rev = 126, SDK = V119.01, Sample Code = 2.0.1 Date:8.15.2016
 
    *Added DynaPro format for EMV transaction messages. 
    
-   *Added getCardPAN function.   
+   *Added getCardPAN function.
+   
    *Added deviceNotPaired delegate.
 
 **********************************************************************************
@@ -278,8 +281,10 @@ Part Rev = 127, SDK = V119.01, Sample Code = 2.0.1 Date:11.21.2016
 Part Rev = 128, SDK = V120.01, Sample Code = 3.0.1 Date:2.8.2017
    
  
-   *Added requestDeviceList   
-   *Added setAdress   
+   *Added requestDeviceList
+   
+   *Added setAdress
+   
    *Added getProductID
 
 
@@ -377,9 +382,107 @@ Part Rev = 138 SDK = 128.01, Sample Code = 2.0.1 Date: 08.27.2020
 * Add debugInfoCallback for debug callback.
 
 * Add getBluetoothRSSI
+
 **********************************************************************************
 **********************************************************************************
 Part Rev = 139 SDK = 128.01, Sample Code = 2.0.1 Date: 01.22.2021
 
 * Modify Swift Version for com.magtek.idynamo protocol string
 * Fix UI issue for iPhone 12 Pro Max
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 140 SDK = 128.01, Obj-C Sample Code = 140.01, Swift Sample Code = 2.4.1 Date: 02.25.2021
+
+* Add separate simulator lib for Xcode 12
+* Add x86_64 for VALID_ARCH in Swift and Obj-C project setting.
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 141 SDK = 129.06, Obj-C Sample Code = 141.01, Swift Sample Code = 2.4.1 iDynamo6Swift = 1.0  Date: 08.19.2021
+
+* Fix crash issue when two or more commands sending at same time.
+* Fix connection failed issue after send command without device connect
+* Fix the send command right after device connected issue
+* Fix the swipe card will get send back card data two times issue.
+* Fix the getFirmware issue, now it will get property (00 or 3A) from device.
+* Add sendCommandSync and sendExtendedCommandSync functions
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 142 SDK = 130.03, Obj-C Sample Code = 142.02, Swift Sample Code = 2.5.1 iDynamo6Swift = 1.0 tDynamoScanAndConnect 1.0 Date: 10.26.2021
+
+* Fix crash issue on closeDevice and sendCommand running at same time.
+* Add log in sendData/Receive data in EASession handling
+* Fix the onDebugCallback property initialization
+* Fix the cardSwipeDidStart on iDynamo 6 and kDynamo
+* Fix the delay in sendExtendedCommand (background thread failure)
+* Fix the multiple packet data parsing in EASession (approve doesn't show issue)
+* Fix the onEMVCommandResult with nil data
+* Fix the issue after switch different lightning device type and cannot open/sending command later on.
+* Add tDynamoScanAndConnect to demonstrate BLE scanning and connecting.
+* Add device type match for lightning/lightning EMV.
+* Fix the crash issue on tDynamo swipe card.
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 143 SDK = 130.03, Obj-C Sample Code = 143.01, Swift Sample Code = 3.0.1 iDynamo6Swift = 2.0.1 tDynamoScanAndConnect 2.0.1 Date: 12.20.2021
+
+* Fix - add boot loader mode support for lightning
+* Add functions
+ - (void) setTimeout : (NSUInteger) timeoutMS;
+ + (void) setTimeFrame : (unsigned int) ms;
+ + (void) enableDebugPrint : (BOOL) enabled;
+
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 144 SDK = 132.01, Obj-C Sample Code = 143.01, Swift Sample Code = 3.0.1 iDynamo6Swift = 2.0.1 tDynamoScanAndConnect 2.0.1 Date: 12.20.2021
+
+* Fix TLV length in TLV payload
+* setProtocolString now access empty string to allow detect the current protocol string
+* Add EADetector class to find out device information on EAAccessory interface
+* Add iDynamo6 support for macOS
+* Fix extended response parsing issue
+* Fix the Bluetooth LE scanning issue
+* Fix the Bluetooth LE/USB threading issue
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 145 SDK = 133.01, Obj-C Sample Code = 143.01, Swift Sample Code = 3.1.1 iDynamo6Swift = 2.0.1 tDynamoScanAndConnect 2.0.1 Date: 03/15/2023
+
+* Fix the high power usage for Lightning interface
+* Fix the ui rotation issue in Swift sample codes
+* Fix the swipe parsing issue on iDynamo Gen I
+* Fix the issue on approve/decline in swift sample (select decline but sent approve message)
+
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 146 SDK = 134.01, Obj-C Sample Code = 146.01, Swift Sample Code = 4.0.1 iDynamo6Swift = 3.0.1 tDynamoScanAndConnect 3.0.1 Date: 06/13/2023
+
+* Fix crash issue when connect bluetooth (very low possibility)
+* Using 150 bytes packet for tDynamo
+* Fix select decline still get approval in swift demo
+* Update sample code to use 255 seconds on eDynamo and infinite on other products in EMV transaction.
+
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 147 SDK = 135.04, Obj-C Sample Code = 147.01, Swift Sample Code = 5.0.1 iDynamo6Swift = 4.0.1 tDynamoScanAndConnect 4.0.1 Date: 03/18/2024
+* Support iDynamo5 Gen III
+* Add FW downloading app for iDynamo5 Gen III
+* Add NFC for tDynamo and iDynamo6
+* Fix the connection state report, device disconnect will report only one time.
+* tDynamoScanAndConnect will store the previous connection address to speed up connection
+
+**********************************************************************************
+**********************************************************************************
+Part Rev = 148 SDK = 135.06, Obj-C Sample Code = 147.01, Swift Sample Code = 5.0.1 iDynamo6Swift = 5.0.1 tDynamoScanAndConnect 5.0.1 Date: 04/18/2024
+* Fix bluetooth connection slow issue (introduced in SDK 135.04)
+* Add Mifare Classic and DESFire access demo code to iDynamo6 and tDynamo
+* Add framework into release package
+* Using 60 bytes packet for eDynamo
+* Add doxygen document in header file 
+
+
