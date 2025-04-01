@@ -40,6 +40,6 @@
     <framework src="ExternalAccessory.framework"/>
     <framework src="libstdc++.dylib"/>
     <source-file src="src/ios/MagtekSDK/Release-iphoneos/libMTSCRA.a" framework="true" />
-    <source-file src="src/ios/MagtekSDK/Release-iphonesimulator/libMTSCRA.a" framework="true" />
+    <!-- <source-file src="src/ios/MagtekSDK/Release-iphonesimulator/libMTSCRA.a" framework="true" /> -->
   </platform>
 </plugin>
