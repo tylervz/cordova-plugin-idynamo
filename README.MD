@@ -43,7 +43,7 @@ To add these entries into the `info.plist`, you can add `edit-config` tags in yo
 </edit-config>
 ```
 
-Apple will reject apps that use this plugin but do not have these usage descriptions. 
+Apple will reject apps that use this plugin but do not have these usage descriptions.
 
 # Example
 ```javascript
@@ -97,7 +97,7 @@ The `closeDevice(success, error)` method stops the magtek device.
 ---
 
 # Events
-Listen to Magtek events as cases of the **magtekEvent** event and get the event `data` attribute: 
+Listen to Magtek events as cases of the **magtekEvent** event and get the event `data` attribute:
 
 ```javascript
 window.addEventListener('magtekEvent', function (e) {
@@ -162,4 +162,14 @@ onDataReceived object:
   "CardStatus": "",
   "RawData": ""
 }
+```
+
+## Updating
+
+Because the SDK provides both iOS and Simulator libraries separately, I created a `libMTSCRA.xcframework` directory with the following command:
+```
+xcodebuild -create-xcframework \
+-library src/ios/MagtekSDK/Release-iphoneos/libMTSCRA.a \
+-library src/ios/MagtekSDK/Release-iphonesimulator/libMTSCRA.a \
+-output libMTSCRA.xcframework
 ```
