@@ -258,62 +258,18 @@ typedef int MTSCRABLEState;
  */
 @property(nonatomic, strong) NSString *cardName;
 
-/*!
- * @attribute cardLastName
- * @discussion card holder last name
- * @see cardName
- */
 @property (strong, nonatomic) NSString *cardLastName;
-/*!
- * @attribute cardMiddleName
- * @discussion card holder middle name
- */
 @property (strong, nonatomic) NSString *cardMiddleName;
-/*!
- * @attribute cardFirstName
- * @discussion card holder first name
- */
 @property (strong, nonatomic) NSString *cardFirstName;
 
-/*!
- * @attribute cardExpDate
- * @discussion card expiration date (MM/YY) on track 2
- */
-@property(nonatomic, strong) NSString *cardExpDate;
-/*!
- * @attribute cardServiceCode
- * @discussion card service code on track 2
- */
-@property(nonatomic, strong) NSString *cardServiceCode;
 
-/*!
- * @attribute cardStatus
- * @discussion card swipe status
- *
- * "00" The card was swiped in the withdrawal direction.
- *
- * "01" The card was swiped in the insertion direction.
- */
+@property(nonatomic, strong) NSString *cardExpDate;
+@property(nonatomic, strong) NSString *cardServiceCode;
 @property(nonatomic, strong) NSString *cardStatus;
 @property(nonatomic, strong) NSString *responseData;
 @property(nonatomic, strong) NSString *maskedTracks;
-
-/*!
- * @attribute encryptedTrack1
- * @discussion Encrypted track 1 data (in HEX)
- */
 @property(nonatomic, strong) NSString *encryptedTrack1;
-
-/*!
- * @attribute encryptedTrack2
- * @discussion Encrypted track 2 data (in HEX)
- */
 @property(nonatomic, strong) NSString *encryptedTrack2;
-
-/*!
- * @attribute encryptedTrack3
- * @discussion Encrypted track 3 data (in HEX)
- */
 @property(nonatomic, strong) NSString *encryptedTrack3;
 @property(nonatomic, strong) NSString *encryptionStatus;
 @property(nonatomic, strong) NSString *maskedTrack1;
@@ -380,6 +336,10 @@ typedef int MTSCRABLEState;
 @property(nonatomic) BOOL isQwantumCard;
 @property(nonatomic) BOOL isQwantumBuffer;
 @property(nonatomic) BOOL isCustomerMessage;
+
+@property(nonatomic, strong) NSString* encryptedSCDE;
+@property(nonatomic, strong) NSString* scdeDUKPTKeySerialNumber;
+@property(nonatomic, strong) NSString* scdeDUKPTKeyInfo;
 
 @property(nonatomic, strong) NSDictionary* allObjects;
 @property(nonatomic, strong) NSArray<NSString*>* objectArray;
@@ -679,7 +639,7 @@ void audioReaderDelegate(void*self, int status);
  */
 - (NSString *) getDeviceSerial;
 
-///Retrieve Device Serial Number created by MagTek
+//Retrieve Device Serial Number created by MagTek
 - (NSString *) getMagTekDeviceSerial;
 
 /*!
@@ -689,19 +649,19 @@ void audioReaderDelegate(void*self, int status);
  */
 - (NSString *) getFirmware;
 
-///Retrieve Device Name
+//Retrieve Device Name
 - (NSString *) getDeviceName;
 
-///Retrieve Device Capabilities
+//Retrieve Device Capabilities
 - (NSString *) getDeviceCaps;
 
-///Retrieve Device Status
+//Retrieve Device Status
 - (NSString *) getDeviceStatus;
 
-///Retrieve TLV Version
+//Retrieve TLV Version
 - (NSString *) getTLVVersion;
 
-///Retrieve Device Part Number
+//Retrieve Device Part Number
 - (NSString *) getDevicePartNumber;
 
 //Retrieve Key Serial Number
@@ -803,17 +763,17 @@ void audioReaderDelegate(void*self, int status);
  */
 - (void) listenForEvents:(UInt32)event;
 
-///Retrieves the Device Type
+//Retrieves the Device Type
 - (long) getDeviceType;
 
 
-///Retrieve card PAN
+//Retrieve card PAN
 - (NSString*) getCardPAN;
 
-///Retrieves the Length of teh PAN
+//Retrieves the Length of teh PAN
 - (int) getCardPANLength;
 
-///Retrieve Session ID, only supported for iDynamo, it will return a empty string in audio reader
+//Retrieve Session ID, only supported for iDynamo, it will return a empty string in audio reader
 - (NSString *) getSessionID;
 
 /*!
@@ -839,31 +799,17 @@ void audioReaderDelegate(void*self, int status);
 
 - (NSString*) getExpDateYear;
 
-///Retrieves the Service Code
+//Retrieves the Service Code
 - (NSString *) getCardServiceCode;
 
-///Retrieves the Card Status
+//Retrieves the Card Status
 - (NSString *) getCardStatus;
 
-///Retrieves the Track Decode Status
+//Retrieves the Track Decode Status
 - (NSString *) getTrackDecodeStatus;
 
-/// Retrives the track 1 decode status
-/// - "00" Good data
-/// - "01" Error decoding, maybe a bad track
-/// - "02" Empty
 - (NSString*) getTrack1DecodeStatus;
-
-/// Retrives the track 2 decode status
-/// - "00" Good data
-/// - "01" Error decoding, maybe a bad track
-/// - "02" Empty
 - (NSString*) getTrack2DecodeStatus;
-
-/// Retrives the track 3 decode status
-/// - "00" Good data
-/// - "01" Error decoding, maybe a bad track
-/// - "02" Empty
 - (NSString*) getTrack3DecodeStatus;
 
 //Retrieve Response Type
@@ -1144,10 +1090,9 @@ void audioReaderDelegate(void*self, int status);
 
 - (int) updateFirmware: (int) firmwareType Data :(NSData*) firmwareData;
 
-///
-///#if DEBUG
-///- (void) setFirmwarePayloadSize : (int) payloadSize;
-///#endif
+#if DEBUG
+- (void) setFirmwarePayloadSize : (int) payloadSize;
+#endif
 
 /*!
  Send a NFC command to Type 2 tag card (tDynamo, iDynamo6)
