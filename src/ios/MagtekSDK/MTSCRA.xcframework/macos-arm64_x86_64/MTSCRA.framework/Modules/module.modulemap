@@ -1,0 +1,6 @@
+framework module MTSCRA {
+  umbrella header "MTSCRA.h"
+  export *
+
+  module * { export * }
+}
