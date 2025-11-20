@@ -27,6 +27,10 @@
         <string>com.magtek.idynamo</string>
       </array>
     </config-file>
+    <!-- Exclude simulator architectures when building for device -->
+    <config-file target="*-Info.plist" parent="EXCLUDED_ARCHS[sdk=iphoneos*]">
+      <string>arm64</string>
+    </config-file>
 
     <header-file src="src/ios/CDVMagtek.h" />
     <source-file src="src/ios/CDVMagtek.m" />
