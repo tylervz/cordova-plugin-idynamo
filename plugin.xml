@@ -31,12 +31,14 @@
     <header-file src="src/ios/CDVMagtek.h" />
     <source-file src="src/ios/CDVMagtek.m" />
 
-    <!-- Link the XCFramework -->
-    <framework src="src/ios/MagtekSDK/MTSCRA.xcframework" custom="true" embed="true" />
-
-    <!-- Required system frameworks -->
-    <framework src="AVFoundation.framework" />
-    <framework src="ExternalAccessory.framework"/>
-    <framework src="AudioToolbox.framework" />
+    <!-- Use podspec to properly handle XCFramework -->
+    <podspec>
+      <config>
+        <source url="https://cdn.cocoapods.org/"/>
+      </config>
+      <pods use-frameworks="true">
+        <pod name="MTSCRA" path="src/ios/MagtekSDK/MTSCRA.podspec" />
+      </pods>
+    </podspec>
   </platform>
 </plugin>

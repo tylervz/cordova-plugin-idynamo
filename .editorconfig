@@ -29,5 +29,8 @@ indent_size = 2
 [*.yaml]
 indent_size = 2
 
+[*.podspec]
+indent_size = 2
+
 [package.json]
 indent_size = 2
