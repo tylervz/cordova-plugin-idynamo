@@ -34,6 +34,6 @@
     <framework src="AVFoundation.framework" />
     <framework src="ExternalAccessory.framework"/>
     <framework src="libstdc++.dylib"/>
-    <framework src="src/ios/MagtekSDK/MTSCRA.xcframework" custom="true" embed="true"/>
+    <framework src="src/ios/MagtekSDK/MTSCRA.xcframework" custom="true" />
   </platform>
 </plugin>
