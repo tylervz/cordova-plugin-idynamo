@@ -30,10 +30,20 @@
     <!-- Our custom plugin code -->
     <header-file src="src/ios/CDVMagtek.h" />
     <source-file src="src/ios/CDVMagtek.m" />
+
+    <!-- Link the XCFramework -->
+    <podspec>
+      <config>
+        <source url="https://cdn.cocoapods.org/"/>
+      </config>
+      <pods use-frameworks="true">
+      </pods>
+    </podspec>
+
     <!-- Magtek and 3rd party code -->
+    <framework src="src/ios/MagtekSDK/MTSCRA.xcframework" custom="true" embed="true" />
     <framework src="AVFoundation.framework" />
     <framework src="ExternalAccessory.framework"/>
-    <framework src="libstdc++.dylib"/>
-    <framework src="src/ios/MagtekSDK/MTSCRA.xcframework" custom="true" embed="true"/>
+    <framework src="AudioToolbox.framework" />
   </platform>
 </plugin>
